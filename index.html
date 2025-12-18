@@ -13,18 +13,14 @@
             <h1>🔥 আপনার গল্পের পূর্ণ PDF ডাউনলোড করুন</h1>
             <p>বিজ্ঞাপন দেখে ফ্রিতে ডাউনলোড করুন। ধন্যবাদ!</p>
         </div>
-
-        <button id="downloadBtn" class="glow-btn">ডাউনলোড শুরু করুন</button>
-
+        <button id="downloadBtn" class="glow-btn" onclick="triggerAdAndStart()">
+            ডাউনলোড শুরু করুন (অ্যাড দেখুন)
+        </button>
         <div id="adContainer" class="hidden">
-            <p class="ad-text">বিজ্ঞাপন লোড হচ্ছে... দয়া করে অপেক্ষা করুন</p>
-            <!-- Your Adsterra Smartlink -->
-            <script src="https://footweargrewshaped.com/cqcbyvnv?key=1a1f32833e4e894b2843db28fabc882c"></script>
+            <p class="ad-text">বিজ্ঞাপন লোড হচ্ছে... দয়া করে অপেক্ষা করুন। অ্যাড দেখার পর ডাউনলোড শুরু হবে!</p>
         </div>
-
         <div id="progressContainer" class="hidden">
             <h2>ফাইল প্রস্তুত হচ্ছে...</h2>
-            
             <!-- Responsive Circular Progress Animation -->
             <div class="circle-loader">
                 <svg class="progress-ring" viewBox="0 0 200 200">
@@ -33,7 +29,6 @@
                 </svg>
                 <div class="timer-text" id="timer">১৫</div>
             </div>
-            
             <svg style="position: absolute; width: 0; height: 0;">
                 <defs>
                     <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -43,7 +38,6 @@
                 </defs>
             </svg>
         </div>
-
         <div id="linkContainer" class="hidden">
             <h2>🎉 ডাউনলোড প্রস্তুত!</h2>
             <a id="megaLink" href="#" target="_blank" class="download-link glow-btn">
@@ -51,12 +45,46 @@
             </a>
             <p class="note">নতুন ট্যাবে খুলবে। সমস্যা হলে রিফ্রেশ করুন।</p>
         </div>
-
         <footer>
             <p>© 2025 | All Rights Reserved</p>
         </footer>
     </div>
+    <script>
+        function triggerAdAndStart() {
+            // Adsterra Direct Link popunder ওপেন করো নতুন ট্যাবে
+            window.open('https://footweargrewshaped.com/cqcbyvnv?key=1a1f32833e4e894b2843db28fabc882c', '_blank');
 
-    <script src="script.js"></script>
+            // অ্যাড ওপেন হওয়ার পর প্রগ্রেস শুরু
+            document.getElementById('adContainer').classList.remove('hidden');
+            document.getElementById('downloadBtn').style.display = 'none';
+
+            // ৩ সেকেন্ড পর প্রগ্রেস দেখাও (অ্যাড লোড হওয়ার সময় দিতে)
+            setTimeout(() => {
+                document.getElementById('progressContainer').classList.remove('hidden');
+                startTimer(15);
+            }, 3000);
+        }
+
+        function startTimer(duration) {
+            let timer = duration;
+            const timerElement = document.getElementById('timer');
+            const interval = setInterval(() => {
+                timerElement.textContent = timer;
+                if (--timer < 0) {
+                    clearInterval(interval);
+                    // Mega লিঙ্ক বের করো URL থেকে (যেমন: ?mega=https://mega.nz/...)
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const mega = urlParams.get('mega');
+                    if (mega) {
+                        document.getElementById('megaLink').href = mega;
+                        document.getElementById('linkContainer').classList.remove('hidden');
+                        document.getElementById('progressContainer').classList.add('hidden');
+                    } else {
+                        alert('Mega লিঙ্ক পাওয়া যায়নি! URL চেক করুন।');
+                    }
+                }
+            }, 1000);
+        }
+    </script>
 </body>
 </html>
