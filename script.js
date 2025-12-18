@@ -50,8 +50,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // ৩টা অ্যাড পপআন্ডার ওপেন করা (তোমার Adsterra লিঙ্ক)
         window.open('https://footweargrewshaped.com/cqcbyvnv?key=1a1f32833e4e894b2843db28fabc882c', '_blank');
-        setTimeout(() => window.open('https://otieu.com/4/10345381', '_blank'), 100);
-        setTimeout(() => window.open('https://footweargrewshaped.com/jn2mprdtig?key=cd8dd43c9e06eef4d173229929c3831b', '_blank'), 200);
+        window.open('https://otieu.com/4/10345381', '_blank');
+        window.open('https://footweargrewshaped.com/jn2mprdtig?key=cd8dd43c9e06eef4d173229929c3831b', '_blank');
 
         // অ্যাড লোড হওয়ার জন্য সামান্য ডিলে (১.৫ সেকেন্ড)
         setTimeout(() => {
